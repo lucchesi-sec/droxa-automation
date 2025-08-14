@@ -146,23 +146,44 @@ export function ROICalculator() {
                           formatCurrency(value) : value}
                       </span>
                     </label>
-                    <input
-                      type="range"
-                      min={key === 'hourlyRate' || key === 'automationCost' ? 10 : 
-                          key === 'manualRepetitiveTasks' || key === 'errorRate' ? 1 : 
-                          key === 'employees' ? 1 : key === 'hoursPerWeek' ? 1 : 0}
-                      max={key === 'hourlyRate' ? 200 : 
-                          key === 'automationCost' ? 50000 : 
-                          key === 'manualRepetitiveTasks' ? 50 : 
-                          key === 'errorRate' ? 20 : 
-                          key === 'employees' ? 100 : 60}
-                      value={value}
-                      onChange={(e) => setValues(prev => ({
-                        ...prev,
-                        [key]: parseInt(e.target.value)
-                      }))}
-                      className="w-full"
-                    />
+                    <div className="relative">
+                      {/* Progress fill background */}
+                      <div 
+                        className="absolute top-1/2 left-0 h-2 bg-gradient-to-r from-green-500/30 to-green-600/40 rounded-full -translate-y-1/2 pointer-events-none transition-all duration-200 ease-out"
+                        style={{
+                          width: `${(
+                            (value - (key === 'hourlyRate' || key === 'automationCost' ? 10 : 
+                              key === 'manualRepetitiveTasks' || key === 'errorRate' ? 1 : 
+                              key === 'employees' ? 1 : key === 'hoursPerWeek' ? 1 : 0)) / 
+                            ((key === 'hourlyRate' ? 200 : 
+                              key === 'automationCost' ? 50000 : 
+                              key === 'manualRepetitiveTasks' ? 50 : 
+                              key === 'errorRate' ? 20 : 
+                              key === 'employees' ? 100 : 60) - 
+                              (key === 'hourlyRate' || key === 'automationCost' ? 10 : 
+                                key === 'manualRepetitiveTasks' || key === 'errorRate' ? 1 : 
+                                key === 'employees' ? 1 : key === 'hoursPerWeek' ? 1 : 0))
+                          ) * 100}%`
+                        }}
+                      />
+                      <input
+                        type="range"
+                        min={key === 'hourlyRate' || key === 'automationCost' ? 10 : 
+                            key === 'manualRepetitiveTasks' || key === 'errorRate' ? 1 : 
+                            key === 'employees' ? 1 : key === 'hoursPerWeek' ? 1 : 0}
+                        max={key === 'hourlyRate' ? 200 : 
+                            key === 'automationCost' ? 50000 : 
+                            key === 'manualRepetitiveTasks' ? 50 : 
+                            key === 'errorRate' ? 20 : 
+                            key === 'employees' ? 100 : 60}
+                        value={value}
+                        onChange={(e) => setValues(prev => ({
+                          ...prev,
+                          [key]: parseInt(e.target.value)
+                        }))}
+                        className="w-full relative z-10"
+                      />
+                    </div>
                   </div>
                 ))}
 

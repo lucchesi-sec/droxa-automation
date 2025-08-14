@@ -121,10 +121,10 @@ export function MobileMenu({ isOpen, onClose, navigation }: MobileMenuProps) {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-80 bg-background/95 backdrop-blur-xl border-l border-border/50 z-50 shadow-2xl"
+            className="fixed top-0 right-0 h-full w-80 bg-background/95 backdrop-blur-xl border-l border-border/50 z-50 shadow-2xl flex flex-col mobile-menu-panel"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-border/50">
+            <div className="flex items-center justify-between p-6 border-b border-border/50 flex-shrink-0">
               <div className="flex items-center space-x-3">
                 <div className="h-8 w-8 flex items-center justify-center">
                   <img 
@@ -148,8 +148,8 @@ export function MobileMenu({ isOpen, onClose, navigation }: MobileMenuProps) {
               </motion.button>
             </div>
 
-            {/* Navigation */}
-            <nav className="p-6 space-y-2">
+            {/* Navigation - Scrollable area */}
+            <nav className="flex-1 p-6 space-y-2 overflow-y-auto min-h-0 mobile-menu-scroll">
               {navigation.map((item, index) => {
                 const Icon = iconMap[item.name] || Home
                 return (
@@ -180,15 +180,15 @@ export function MobileMenu({ isOpen, onClose, navigation }: MobileMenuProps) {
               })}
             </nav>
 
-            {/* Footer */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-border/50">
+            {/* Footer - Fixed at bottom */}
+            <div className="p-6 border-t border-border/50 flex-shrink-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.3 }}
                 className="text-center"
               >
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-sm text-muted-foreground mb-3">
                   Ready to automate your business?
                 </p>
                 <motion.button
