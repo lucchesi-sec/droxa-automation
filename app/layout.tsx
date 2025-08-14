@@ -1,5 +1,6 @@
 import Script from "next/script"
 import type React from "react"
+import { Suspense } from "react"
 import type { Metadata } from "next"
 import { Exo_2 } from "next/font/google"
 import { GeistMono } from "geist/font/mono"
@@ -71,7 +72,9 @@ html {
       </head>
       <body>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <AnalyticsTracker />
+          <Suspense fallback={null}>
+            <AnalyticsTracker />
+          </Suspense>
           <PerformanceMonitor />
           {children}
         </ThemeProvider>
