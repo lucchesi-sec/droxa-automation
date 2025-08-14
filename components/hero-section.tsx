@@ -21,7 +21,38 @@ export function HeroSection() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24" style={{background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.3) 100%), linear-gradient(to bottom, hsl(var(--background)), hsl(var(--muted) / 0.6), hsl(var(--muted) / 0.8))'}}>
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden">
+      {/* Enhanced background with smoother transitions */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/40" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,hsl(var(--muted)/0.1)_50%,hsl(var(--muted)/0.2)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_100%)]" />
+      
+      {/* Animated gradient orbs for depth */}
+      <motion.div
+        animate={{
+          opacity: [0.3, 0.6, 0.3],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full blur-3xl"
+      />
+      <motion.div
+        animate={{
+          opacity: [0.2, 0.5, 0.2],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-500/10 to-indigo-600/10 rounded-full blur-3xl"
+      />
       <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
         <div className="max-w-6xl mx-auto text-center relative z-10">
           {/* Logo with animation */}
@@ -53,18 +84,31 @@ export function HeroSection() {
                 className="h-20 w-20 md:h-24 md:w-24 object-contain mx-auto drop-shadow-lg"
               />
             </motion.div>
-            {/* Subtle glowing effect */}
+            {/* Enhanced multi-layer glowing effect */}
             <motion.div
               animate={{
-                opacity: [0.3, 0.7, 0.3],
-                scale: [1, 1.05, 1],
+                opacity: [0.2, 0.4, 0.2],
+                scale: [1, 1.1, 1],
               }}
               transition={{
-                duration: 2.5,
+                duration: 4,
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-600/20 blur-xl rounded-full -z-10"
+              className="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-500/30 blur-2xl rounded-full -z-10"
+            />
+            <motion.div
+              animate={{
+                opacity: [0.1, 0.3, 0.1],
+                scale: [1.2, 1.4, 1.2],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+              className="absolute inset-0 bg-gradient-to-br from-indigo-400/20 to-cyan-500/20 blur-3xl rounded-full -z-20"
             />
           </motion.div>
 

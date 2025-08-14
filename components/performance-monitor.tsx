@@ -46,8 +46,10 @@ export function PerformanceMonitor() {
       
       const clsObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value
+          // Type assertion for layout shift entry
+          const layoutEntry = entry as any
+          if (!layoutEntry.hadRecentInput) {
+            clsValue += layoutEntry.value
             metrics.cls = clsValue
           }
         })

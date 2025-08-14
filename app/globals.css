@@ -148,6 +148,32 @@
     border-top-left-radius: 4rem;
     border-top-right-radius: 4rem;
   }
+  
+  /* Enhanced background utilities */
+  .bg-gradient-smooth {
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--background)),
+      hsl(var(--background) / 0.98),
+      hsl(var(--muted) / 0.1)
+    );
+  }
+  
+  .bg-glow-orb {
+    background: radial-gradient(
+      circle at center,
+      hsl(var(--primary) / 0.1) 0%,
+      transparent 70%
+    );
+  }
+  
+  /* Improved glass morphism */
+  .glass-panel {
+    background: hsl(var(--background) / 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.2);
+    box-shadow: 0 8px 32px hsl(var(--foreground) / 0.1);
+  }
 }
 
 /* Infinite Moving Cards Animation */

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -94,7 +94,7 @@ export function LiveChatDemo() {
         type: 'bot',
         content: getBotResponse(content),
         timestamp: new Date(),
-        suggestions: suggestions[Math.floor(Math.random() * suggestions.length)]
+        suggestions: [suggestions[Math.floor(Math.random() * suggestions.length)]]
       }
       setMessages(prev => [...prev, botResponse])
     }, 1000 + Math.random() * 1500)
@@ -206,14 +206,17 @@ export function LiveChatDemo() {
                             </div>
                             {message.suggestions && (
                               <div className="mt-2 space-y-1">
-                                <Button
-                                  size="sm"
-                                  variant="ghost"
-                                  className="w-full justify-start text-xs p-2 h-auto"
-                                  onClick={() => handleSend(message.suggestions!)}
-                                >
-                                  {message.suggestions}
-                                </Button>
+                                {message.suggestions.map((suggestion, index) => (
+                                  <Button
+                                    key={index}
+                                    size="sm"
+                                    variant="ghost"
+                                    className="w-full justify-start text-xs p-2 h-auto"
+                                    onClick={() => handleSend(suggestion)}
+                                  >
+                                    {suggestion}
+                                  </Button>
+                                ))}
                               </div>
                             )}
                           </div>

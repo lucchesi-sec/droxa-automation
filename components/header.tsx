@@ -29,12 +29,15 @@ export function Header() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center space-x-2 relative">
             <Spotlight 
-              translateY={-200}
-              width={300}
-              height={600}
-              smallWidth={120}
-              duration={5}
-              xOffset={50}
+              translateY={-150}
+              width={250}
+              height={500}
+              smallWidth={100}
+              duration={6}
+              xOffset={30}
+              gradientFirst="radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(220, 100%, 85%, .06) 0, hsla(220, 100%, 55%, .02) 50%, hsla(220, 100%, 45%, 0) 80%)"
+              gradientSecond="radial-gradient(50% 50% at 50% 50%, hsla(220, 100%, 85%, .04) 0, hsla(220, 100%, 55%, .01) 80%, transparent 100%)"
+              gradientThird="radial-gradient(50% 50% at 50% 50%, hsla(220, 100%, 85%, .03) 0, hsla(220, 100%, 45%, .01) 80%, transparent 100%)"
             />
             <div className="h-8 w-8 flex items-center justify-center relative z-10">
               <img 
