@@ -120,14 +120,13 @@ function ChartTooltipContent({
   color,
   nameKey,
   labelKey,
-}: {
-  React.ComponentProps<"div"> & {
-    hideLabel?: boolean
-    hideIndicator?: boolean
-    indicator?: "line" | "dot" | "dashed"
-    nameKey?: string
-    labelKey?: string
-  }): JSX.Element | null {
+}: React.ComponentProps<"div"> & {
+  hideLabel?: boolean
+  hideIndicator?: boolean
+  indicator?: "line" | "dot" | "dashed"
+  nameKey?: string
+  labelKey?: string
+}): JSX.Element | null {
   const { config } = useChart()
 
   const tooltipLabel = React.useMemo(() => {
