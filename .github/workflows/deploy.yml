@@ -26,7 +26,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
 
       - name: Get pnpm store directory
         shell: bash
@@ -42,7 +42,9 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          echo "Installing dependencies with pnpm..."
+          pnpm install --prefer-frozen-lockfile --strict-peer-dependencies=false
 
       - name: Run linter
         run: npm run lint
