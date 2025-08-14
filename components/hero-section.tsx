@@ -23,14 +23,14 @@ export function HeroSection() {
   return (
     <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden">
       {/* Enhanced background with smoother transitions */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/40" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,hsl(var(--muted)/0.1)_50%,hsl(var(--muted)/0.2)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 via-background/80 to-muted/20" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,hsl(var(--muted)/0.05)_30%,hsl(var(--muted)/0.1)_60%,hsl(var(--muted)/0.15)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,transparent_40%,hsl(var(--background)/0.8)_70%,hsl(var(--background))_100%)]" />
       
-      {/* Animated gradient orbs for depth */}
+      {/* Animated gradient orbs for depth with better blending */}
       <motion.div
         animate={{
-          opacity: [0.3, 0.6, 0.3],
+          opacity: [0.15, 0.4, 0.15],
           scale: [1, 1.1, 1],
         }}
         transition={{
@@ -38,11 +38,11 @@ export function HeroSection() {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-purple-600/10 rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-blue-500/8 to-purple-600/12 rounded-full blur-[48px]"
       />
       <motion.div
         animate={{
-          opacity: [0.2, 0.5, 0.2],
+          opacity: [0.12, 0.35, 0.12],
           scale: [1, 1.2, 1],
         }}
         transition={{
@@ -51,7 +51,21 @@ export function HeroSection() {
           ease: "easeInOut",
           delay: 2
         }}
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-500/10 to-indigo-600/10 rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-500/8 to-indigo-600/12 rounded-full blur-[48px]"
+      />
+      {/* Additional atmospheric layers for seamless blending */}
+      <motion.div
+        animate={{
+          opacity: [0.08, 0.2, 0.08],
+          scale: [0.8, 1.3, 0.8],
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 4
+        }}
+        className="absolute top-1/3 right-1/3 w-72 h-72 bg-gradient-to-bl from-cyan-400/6 to-blue-500/8 rounded-full blur-[60px]"
       />
       <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
         <div className="max-w-6xl mx-auto text-center relative z-10">
@@ -84,10 +98,10 @@ export function HeroSection() {
                 className="h-20 w-20 md:h-24 md:w-24 object-contain mx-auto drop-shadow-lg"
               />
             </motion.div>
-            {/* Enhanced multi-layer glowing effect */}
+            {/* Enhanced multi-layer glowing effect with better blending */}
             <motion.div
               animate={{
-                opacity: [0.2, 0.4, 0.2],
+                opacity: [0.15, 0.3, 0.15],
                 scale: [1, 1.1, 1],
               }}
               transition={{
@@ -95,11 +109,11 @@ export function HeroSection() {
                 repeat: Infinity,
                 ease: "easeInOut"
               }}
-              className="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-500/30 blur-2xl rounded-full -z-10"
+              className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-500/25 blur-2xl rounded-full -z-10"
             />
             <motion.div
               animate={{
-                opacity: [0.1, 0.3, 0.1],
+                opacity: [0.08, 0.2, 0.08],
                 scale: [1.2, 1.4, 1.2],
               }}
               transition={{
@@ -108,7 +122,21 @@ export function HeroSection() {
                 ease: "easeInOut",
                 delay: 1
               }}
-              className="absolute inset-0 bg-gradient-to-br from-indigo-400/20 to-cyan-500/20 blur-3xl rounded-full -z-20"
+              className="absolute inset-0 bg-gradient-to-br from-indigo-400/15 to-cyan-500/15 blur-3xl rounded-full -z-20"
+            />
+            {/* Additional soft outer glow for seamless blending */}
+            <motion.div
+              animate={{
+                opacity: [0.05, 0.15, 0.05],
+                scale: [1.4, 1.6, 1.4],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+              className="absolute inset-0 bg-gradient-to-br from-blue-300/10 to-purple-400/10 blur-[40px] rounded-full -z-30"
             />
           </motion.div>
 
