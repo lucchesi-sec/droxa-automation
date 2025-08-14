@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ModeToggle } from "@/components/mode-toggle"
 import ExpandableNavbar from "@/components/expandable-navbar"
 import { Spotlight } from "@/components/ui/spotlight-new"
@@ -12,12 +12,22 @@ const navigation = [
   { name: "Services", href: "#services" },
   { name: "About", href: "#about" },
   { name: "Testimonials", href: "#testimonials" },
-  { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
 ]
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      setIsScrolled(scrollTop > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   return (
     <>
@@ -25,7 +35,11 @@ export function Header() {
         <ExpandableNavbar />
       </div>
 
-      <header className="md:hidden sticky top-0 z-50 w-full border-transparent bg-transparent">
+      <header className={`md:hidden sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-background/95 backdrop-blur-xl border-b border-border/50 shadow-lg' 
+          : 'bg-transparent border-transparent'
+      }`}>
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center space-x-2 relative">
             <Spotlight 
