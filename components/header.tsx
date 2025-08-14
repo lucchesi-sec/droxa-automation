@@ -25,7 +25,7 @@ export function Header() {
         <ExpandableNavbar />
       </div>
 
-      <header className="md:hidden sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="md:hidden sticky top-0 z-50 w-full border-transparent bg-transparent">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center space-x-2 relative">
             <Spotlight 
@@ -46,7 +46,7 @@ export function Header() {
                 className="h-8 w-8 object-contain"
               />
             </div>
-            <span className="text-xl font-bold relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-foreground">
+            <span className="text-xl font-bold relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-foreground via-primary to-foreground [text-shadow:_0_1px_2px_rgb(0_0_0_/_0.8)]">
               Droxa Automation
             </span>
           </div>

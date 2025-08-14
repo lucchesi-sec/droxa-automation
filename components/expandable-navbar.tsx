@@ -57,7 +57,7 @@ export default function ExpandableNavbar({ className }: { className?: string }) 
         <ExpandableTabs 
           tabs={navTabs}
           onChange={handleTabChange}
-          className="bg-background/90 backdrop-blur-md border-border/30 shadow-xl ring-1 ring-foreground/5"
+          className="bg-transparent border-transparent shadow-none ring-0"
           activeColor="text-primary"
         />
       </div>

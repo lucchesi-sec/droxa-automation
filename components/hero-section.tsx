@@ -21,11 +21,12 @@ export function HeroSection() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden">
-      {/* Enhanced background with smoother transitions */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 via-background/80 to-muted/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_0%,hsl(var(--muted)/0.05)_30%,hsl(var(--muted)/0.1)_60%,hsl(var(--muted)/0.15)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,transparent_40%,hsl(var(--background)/0.8)_70%,hsl(var(--background))_100%)]" />
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center pt-24 overflow-hidden -mt-24">
+      {/* Extended background to cover header area and eliminate gap */}
+      <div className="absolute inset-0 -top-24 bg-gradient-to-b from-background via-background/99 via-background/98 via-background/96 via-background/93 via-background/90 to-muted/20" />
+      {/* Gentle radial overlays for depth without harsh lines */}
+      <div className="absolute inset-0 -top-24 bg-[radial-gradient(ellipse_140%_120%_at_50%_130%,transparent_0%,hsl(var(--muted)/0.02)_35%,hsl(var(--muted)/0.06)_65%,hsl(var(--muted)/0.10)_90%,hsl(var(--muted)/0.12)_100%)]" />
+      <div className="absolute inset-0 -top-24 bg-[radial-gradient(circle_180%_at_50%_90%,transparent_0%,transparent_25%,hsl(var(--background)/0.98)_50%,hsl(var(--background)/0.99)_75%,hsl(var(--background))_100%)]" />
       
       {/* Animated gradient orbs for depth with better blending */}
       <motion.div
@@ -67,7 +68,7 @@ export function HeroSection() {
         }}
         className="absolute top-1/3 right-1/3 w-72 h-72 bg-gradient-to-bl from-cyan-400/6 to-blue-500/8 rounded-full blur-[60px]"
       />
-      <div className="container mx-auto px-4 flex-1 flex items-center justify-center">
+      <div className="container mx-auto px-4 flex-1 flex items-center justify-center pt-32 md:pt-20">
         <div className="max-w-6xl mx-auto text-center relative z-10">
           {/* Logo with animation */}
           <motion.div
