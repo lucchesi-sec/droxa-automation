@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://droxa-automation.com/sitemap.xml
+
+# Disallow demo routes
+Disallow: /background-gradient-demo
+Disallow: /components-showcase
+Disallow: /expandable-tabs-demo
+Disallow: /hyper-text-demo
+Disallow: /tracing-beam-test
