@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "motion/react"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 import { X, Home, Briefcase, Users, Phone, Star } from "lucide-react"
 
@@ -17,7 +18,7 @@ const menuVariants = {
     x: "100%",
     transition: {
       duration: 0.3,
-      ease: "easeInOut"
+      ease: [0.4, 0, 0.2, 1]
     }
   },
   open: {
@@ -25,7 +26,7 @@ const menuVariants = {
     x: 0,
     transition: {
       duration: 0.4,
-      ease: "easeOut"
+      ease: [0, 0, 0.2, 1]
     }
   }
 }
@@ -59,12 +60,12 @@ const itemVariants = {
     transition: {
       delay: i * 0.1 + 0.2,
       duration: 0.3,
-      ease: "easeOut"
+      ease: [0, 0, 0.2, 1]
     }
   })
 }
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   "Home": Home,
   "Services": Briefcase,
   "About": Users,
@@ -127,9 +128,11 @@ export function MobileMenu({ isOpen, onClose, navigation }: MobileMenuProps) {
             <div className="flex items-center justify-between p-6 border-b border-border/50 flex-shrink-0">
               <div className="flex items-center space-x-3">
                 <div className="h-8 w-8 flex items-center justify-center">
-                  <img 
+                  <Image
                     src="/droxa-logo.png" 
                     alt="Droxa Automation Logo" 
+                    width={32}
+                    height={32}
                     className="h-8 w-8 object-contain"
                   />
                 </div>
@@ -149,7 +152,7 @@ export function MobileMenu({ isOpen, onClose, navigation }: MobileMenuProps) {
             </div>
 
             {/* Navigation - Scrollable area */}
-            <nav className="flex-1 p-6 space-y-2 overflow-y-auto min-h-0 mobile-menu-scroll">
+            <nav className="flex-1 p-6 space-y-2 overflow-y-auto min-h-0 mobile-menu-scroll" aria-label="Main navigation">
               {navigation.map((item, index) => {
                 const Icon = iconMap[item.name] || Home
                 return (
@@ -164,13 +167,14 @@ export function MobileMenu({ isOpen, onClose, navigation }: MobileMenuProps) {
                     className={cn(
                       "w-full flex items-center space-x-4 p-4 rounded-xl text-left",
                       "hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5",
-                      "transition-all duration-200 group"
+                      "transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-primary/20"
                     )}
                     whileHover={{ x: 8 }}
                     whileTap={{ scale: 0.98 }}
+                    aria-label={`Navigate to ${item.name} section`}
                   >
                     <div className="p-2 rounded-lg bg-muted/50 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
                     </div>
                     <span className="text-lg font-medium group-hover:text-primary transition-colors">
                       {item.name}
