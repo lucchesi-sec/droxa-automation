@@ -69,7 +69,12 @@ jobs:
           echo "Cleared any existing build artifacts"
 
       - name: Build Project Artifacts  
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel build --token=${{ secrets.VERCEL_TOKEN }}
+          fi
 
       - name: Deploy Project Artifacts to Vercel
         run: |
