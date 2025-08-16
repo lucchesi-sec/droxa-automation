@@ -47,10 +47,10 @@ jobs:
           pnpm install --prefer-frozen-lockfile --strict-peer-dependencies=false
 
       - name: Run linter
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Build project
-        run: npm run build
+        run: pnpm run build
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
