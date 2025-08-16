@@ -3,11 +3,11 @@
 import { useEffect } from 'react'
 
 interface PerformanceMetrics {
-  fcp: number // First Contentful Paint
-  lcp: number // Largest Contentful Paint
-  fid: number // First Input Delay (Legacy, now INP)
-  cls: number // Cumulative Layout Shift
-  ttfb: number // Time to First Byte
+  fcp?: number // First Contentful Paint
+  lcp?: number // Largest Contentful Paint
+  inp?: number // Interaction to Next Paint
+  cls?: number // Cumulative Layout Shift
+  ttfb?: number // Time to First Byte
 }
 
 export function PerformanceMonitor() {
@@ -15,7 +15,8 @@ export function PerformanceMonitor() {
     if (typeof window === 'undefined') return
     if (!('PerformanceObserver' in window)) return
 
-    const metrics: Partial<PerformanceMetrics> = {}
+    const metrics: PerformanceMetrics = {}
+    const observers: PerformanceObserver[] = []
 
     // First Contentful Paint
     if (PerformanceObserver.supportedEntryTypes.includes('paint')) {
@@ -28,6 +29,7 @@ export function PerformanceMonitor() {
         })
       })
       paintObserver.observe({ entryTypes: ['paint'] })
+      observers.push(paintObserver)
     }
 
     // Largest Contentful Paint
@@ -35,9 +37,12 @@ export function PerformanceMonitor() {
       const lcpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries()
         const lastEntry = entries[entries.length - 1]
-        metrics.lcp = lastEntry.startTime
+        if (lastEntry) {
+          metrics.lcp = lastEntry.startTime
+        }
       })
       lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] })
+      observers.push(lcpObserver)
     }
 
     // Cumulative Layout Shift
@@ -46,8 +51,7 @@ export function PerformanceMonitor() {
       
       const clsObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          // Type assertion for layout shift entry
-          const layoutEntry = entry as any
+          const layoutEntry = entry as LayoutShift
           if (!layoutEntry.hadRecentInput) {
             clsValue += layoutEntry.value
             metrics.cls = clsValue
@@ -55,19 +59,21 @@ export function PerformanceMonitor() {
         })
       })
       clsObserver.observe({ entryTypes: ['layout-shift'] })
+      observers.push(clsObserver)
     }
 
-    // First Input Delay to Interaction to Next Paint
+    // Interaction to Next Paint (replacing FID)
     if (PerformanceObserver.supportedEntryTypes.includes('event')) {
       const inpObserver = new PerformanceObserver((list) => {
         const entries = list.getEntries()
         entries.forEach((entry) => {
           if (entry.name === 'first-input') {
-            metrics.fid = entry.duration // This is now Interaction to Next Paint
+            metrics.inp = entry.duration
           }
         })
       })
       inpObserver.observe({ entryTypes: ['first-input'] })
+      observers.push(inpObserver)
     }
 
     // Time to First Byte
@@ -76,34 +82,42 @@ export function PerformanceMonitor() {
       metrics.ttfb = navigation.responseStart
     }
 
-    // Log metrics after page load
+    // Log metrics after page load (only in development)
     const logMetrics = () => {
-      console.log('📊 Performance Metrics:', {
-        ...metrics,
-        pageLoad: performance.timing ? performance.timing.loadEventEnd - performance.timing.navigationStart : 0
-      })
+      if (process.env.NODE_ENV === 'development') {
+        // Development-only performance logging - will be removed in production build
+         
+        console.log('📊 Performance Metrics:', metrics)
+      }
 
-      // You can send these metrics to your analytics service
+      // Send metrics to analytics
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'performance_metrics', {
-          custom_params: {
-            fcp: metrics.fcp,
-            lcp: metrics.lcp,
-            fid: metrics.fid,
-            cls: metrics.cls,
-            ttfb: metrics.ttfb
-          }
+          custom_params: metrics
         })
       }
     }
 
-    // Wait for all metrics to be collected
-    window.addEventListener('load', () => setTimeout(logMetrics, 1000))
+    let timeoutId: NodeJS.Timeout
+    const handleLoad = () => {
+      timeoutId = setTimeout(logMetrics, 1000)
+    }
 
+    window.addEventListener('load', handleLoad)
+
+    // Cleanup function
     return () => {
-      window.removeEventListener('load', logMetrics)
+      window.removeEventListener('load', handleLoad)
+      if (timeoutId) clearTimeout(timeoutId)
+      observers.forEach(observer => observer.disconnect())
     }
   }, [])
 
   return null
+}
+
+// Type definitions for better TypeScript support
+interface LayoutShift extends PerformanceEntry {
+  value: number
+  hadRecentInput: boolean
 }

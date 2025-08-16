@@ -1,8 +1,9 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import type { ComponentProps, ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { FacebookIcon, FrameIcon, InstagramIcon, LinkedinIcon, YoutubeIcon } from 'lucide-react';
+import { FrameIcon, LinkedinIcon } from 'lucide-react';
 
 interface FooterLink {
 	title: string;
@@ -49,9 +50,11 @@ export function Footer() {
 				<AnimatedContainer className="space-y-2 md:space-y-4">
 					<div className="flex items-center space-x-2">
 						<div className="h-8 w-8 flex items-center justify-center">
-							<img 
+							<Image
 								src="/droxa-logo.png" 
 								alt="Droxa Automation Logo" 
+								width={32}
+								height={32}
 								className="h-8 w-8 object-contain"
 							/>
 						</div>

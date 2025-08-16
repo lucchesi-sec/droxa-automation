@@ -3,7 +3,7 @@ import { animate } from "framer-motion";
 import * as React from "react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { GoCopilot } from "react-icons/go";
-import { SlidingNumber } from "@/components/ui/sliding-number";
+// Removed unused import: SlidingNumber;
 
 interface AnimatedPlatformsCardProps {
   area: string;

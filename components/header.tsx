@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { ModeToggle } from "@/components/mode-toggle"
 import ExpandableNavbar from "@/components/expandable-navbar"
 import { Spotlight } from "@/components/ui/spotlight-new"
@@ -54,9 +55,11 @@ export function Header() {
               gradientThird="radial-gradient(50% 50% at 50% 50%, hsla(220, 100%, 85%, .03) 0, hsla(220, 100%, 45%, .01) 80%, transparent 100%)"
             />
             <div className="h-8 w-8 flex items-center justify-center relative z-10">
-              <img 
+              <Image
                 src="/droxa-logo.png" 
                 alt="Droxa Automation Logo" 
+                width={32}
+                height={32}
                 className="h-8 w-8 object-contain"
               />
             </div>

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play } from "lucide-react"
@@ -93,9 +94,11 @@ export function HeroSection() {
               }}
               className="relative z-10"
             >
-              <img 
+              <Image
                 src="/droxa-logo.png" 
                 alt="Droxa Automation Logo" 
+                width={96}
+                height={96}
                 className="h-20 w-20 md:h-24 md:w-24 object-contain mx-auto drop-shadow-lg"
               />
             </motion.div>
@@ -211,12 +214,13 @@ export function HeroSection() {
         className="w-full max-w-6xl mx-auto px-4 pb-10"
       >
         <div className="rounded-2xl border bg-card overflow-hidden shadow-lg">
-          <img
+          <Image
             src="/automation-dashboard-dark.png"
             alt="Droxa Automation Dashboard Preview"
-            className="aspect-video h-auto w-full object-cover"
-            height={600}
             width={1200}
+            height={600}
+            className="aspect-video h-auto w-full object-cover"
+            priority
           />
         </div>
       </motion.div>

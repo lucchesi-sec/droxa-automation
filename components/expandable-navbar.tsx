@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+// import { useState } from "react"; // Removed unused import
 import { ExpandableTabs } from "@/components/ui/expandable-tabs";
 import { cn } from "@/lib/utils";
 import { 
@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 
 export default function ExpandableNavbar({ className }: { className?: string }) {
-  const [selectedTab, setSelectedTab] = useState<number | null>(null);
+  // Removed unused state - will be implemented when needed
+  // const [selectedTab, setSelectedTab] = useState<number | null>(null);
 
   // Navigation tabs with icons matching the company's automation theme
   const navTabs = [
@@ -26,7 +27,7 @@ export default function ExpandableNavbar({ className }: { className?: string }) 
   ];
 
   const handleTabChange = (index: number | null) => {
-    setSelectedTab(index);
+    // Tab selection logic will be implemented when needed
     
     if (index !== null && navTabs[index] && navTabs[index].title) {
       const sectionMap: Record<string, string> = {

@@ -34,7 +34,7 @@ export function HyperText({
     setIsAnimating(true);
     
     const interval = setInterval(() => {
-      setDisplayText((prev) => {
+      setDisplayText(() => {
         return text
           .split("")
           .map((letter, index) => {

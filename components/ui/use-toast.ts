@@ -20,10 +20,13 @@ type ToasterToast = ToastProps & {
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
-  UPDATE_TOAST: "UPDATE_TOAST",
+  UPDATE_TOAST: "UPDATE_TOAST", 
   DISMISS_TOAST: "DISMISS_TOAST",
   REMOVE_TOAST: "REMOVE_TOAST",
 } as const
+
+// Export actionTypes for external usage if needed
+export { actionTypes }
 
 let count = 0
 

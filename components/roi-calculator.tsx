@@ -83,9 +83,7 @@ export function ROICalculator() {
     }).format(value)
   }
 
-  const formatNumber = (value: number) => {
-    return Math.round(value).toLocaleString()
-  }
+  // Note: formatCurrency function above handles number formatting
 
   return (
     <section id="roi-calculator" className="py-24">

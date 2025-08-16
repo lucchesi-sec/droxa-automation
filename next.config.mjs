@@ -1,11 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // Removed eslint.ignoreDuringBuilds and typescript.ignoreBuildErrors for production safety
   images: {
     unoptimized: false,
     formats: ['image/webp', 'image/avif'],
@@ -15,6 +10,11 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  // Additional production optimizations
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  poweredByHeader: false,
 }
 
 export default nextConfig
